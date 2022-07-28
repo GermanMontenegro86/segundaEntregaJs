@@ -23,9 +23,10 @@
 
 /* cards */
 
-.card img {
-  height: 50vh;
+.card img{
+  height: 55vh;
 }
+
 
 /* mercaderia */
 
@@ -96,6 +97,3 @@
   margin-top: 60px;
 }
 
-.card img{
-  height: 20vh;
-}
