@@ -55,6 +55,7 @@ function botonProductos() {
             alert("Ingrese datos numericos");
             precio = parseFloat(prompt("ingresar precio del producto"));
         }
+        
 
         let vencimiento = prompt("Ingrese fecha de vencimiento");
 
