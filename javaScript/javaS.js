@@ -1,56 +1,73 @@
-class Producto {
+class ProductoEstructura {
     constructor(nombre, codigoBarra, stock, precio, vencimiento) {
         this.nombre = nombre;
         this.codigoBarra = codigoBarra;
         this.stock = stock;
         this.precio = precio;
         this.vencimiento = vencimiento;
-        this.vender = false;
     }
 
-    sumarIva() {
-        this.precio = this.precio * 0.21;
-
+    conIva (){
+        let iva = this.precio * 1.21;
+        let mensaje= "El precio con el iva es $ " + iva;
+        console.log(mensaje);
     }
 
-    restarIva() {
-        this.precio = this.precio / 1.2;
+    sinIva (){
+        let iva= this.precio / 1.21;
+        let mensaje= "El precio sin el iva es $ " + iva;
+        console.log(mensaje);
 
-    }
-
-    venderPorCantidad(cantidad) {
-
-        this.stock = this.stock - cantidad;
-
-        this.vender = true;
     }
 
     mostraProductos() {
-        //console.info("el Producto es",this);
-        console.log("nombre: " + this.nombre + " codigo de barra: " + this.codigoBarra + " stock: " + this.stock + " precio: $ " + " vencimiento: " + this.vencimiento);
-        if (this.vendido == true) {
-            console.log("Se vendio");
-        } else {
-            console.log("No se vendio");
-        }
+        console.log("nombre: " + this.nombre + " codigo de barra: " + this.codigoBarra + " stock: " + this.stock + " precio: $ " + this.precio + " vencimiento: " + this.vencimiento);
+
     }
 
 }
 
+
+const datosProductos = [];
+
+
 function botonProductos() {
 
-    const productos = [];
-    productos.push(new Producto("yerba", " 263534587412", 12, 320, "20/12/2023"));
-    productos.push(new Producto("paty", "256654878962", 12, 820, "20/12/2023"));
-    productos.push(new Producto("papas fritas", "2347488955", 12, 920, "20/12/2023"));
+    let entrada = confirm("Desea cargar productos");
 
-    productos[1].venderPorCantidad(10);
+    while (entrada) {
+
+        let nombreProducto = prompt("ingresar nombre del preducto");
+
+        let codigoBarra = +prompt("ingresar codigo de barra");
+        while (isNaN(codigoBarra)) {
+            alert("Ingrese datos numericos");
+            codigoBarra = +prompt("ingresar codigo de barra");
+        }
+
+        let stock = +prompt("ingresar cantidad del producto");
+        while (isNaN(stock)) {
+            alert("Ingrese datos numericos");
+            stock = +prompt("ingresar cantidad del producto");
+        }
+        let precio = parseFloat(prompt("ingresar precio del producto"));
+        while (isNaN(precio)) {
+            alert("Ingrese datos numericos");
+            precio = parseFloat(prompt("ingresar precio del producto"));
+        }
+
+        let vencimiento = prompt("Ingrese fecha de vencimiento");
+
+        datosProductos.push(new ProductoEstructura(nombreProducto, codigoBarra, stock, precio, vencimiento));
+
+        entrada = confirm("Desea cargar productos");
+    }
 
 
-
-    for (const Producto of productos) {
-        console.log(Producto.mostraProductos());
-        // console.log(Producto.sumarIva());
+    for (const ProductoEstructura of datosProductos) {
+        ProductoEstructura.mostraProductos();
+        ProductoEstructura.conIva();
+        ProductoEstructura.sinIva();
 
     }
 
